@@ -71,5 +71,16 @@ class Bootstrap {
 				return $query;
 			}
 		);
+
+		// Add CPTs to main RSS feed.
+		add_filter(
+			'request',
+			function( $query ) {
+				if ( isset( $query['feed'] ) ) {
+					$query['post_type'] = get_post_types();
+				}
+				return $query;
+			}
+		);
 	}
 }
